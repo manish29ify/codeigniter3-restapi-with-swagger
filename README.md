@@ -1,6 +1,8 @@
-## Welcome to GitHub Pages
+## CodeIginter Sest Server With Swagger
 
 You can use the [editor on GitHub](https://github.com/manish29ify/codeigniter3-restapi-with-swagger/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+
+For more details please visit [Document](https://github.com/manish29ify/codeigniter3-restapi-with-swagger/wiki)
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
