@@ -7,6 +7,9 @@ For more details please visit [Document](https://github.com/manish29ify/codeigni
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ### Installation
+
+```
+
 * Start a line with a star
 * Profit!
 
@@ -16,7 +19,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 ###### This is an <h6> tag
 
 	
-	*This text will be italic*
+*This text will be italic*
 _This will also be italic_
 
 **This text will be bold**
@@ -25,7 +28,7 @@ __This will also be bold__
 _You **can** combine them_
 
 	
-	1. Item 1
+1. Item 1
 1. Item 2
 1. Item 3
 	
@@ -33,11 +36,11 @@ _You **can** combine them_
 ![GitHub Logo](/images/logo.png)
 Format: ![Alt Text](url)
 
-	http://github.com - automatic!
+http://github.com - automatic!
 [GitHub](http://github.com)
 	
 	
-	As Kanye West said:
+As Kanye West said:
 
 > We're living the future so
 > the present is our past.
