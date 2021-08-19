@@ -111,8 +111,8 @@ $config['rest_realm'] = 'REST API';
 |           authorization key
 |
 */
-$config['rest_auth'] = 'apikey';
-// $config['rest_auth'] = FALSE;
+// $config['rest_auth'] = 'apikey';
+$config['rest_auth'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -223,7 +223,7 @@ $config['rest_valid_logins'] = ['admin' => '1234'];
 | String of api_key for login, if authentication is api_key in header
 |
 */
-$config['rest_valid_api_key'] = '1e957ebc35631ab22d5bd6526bd14ea2';
+$config['rest_valid_api_key'] = ['testing','1e957ebc35631ab22d5bd6526bd14ea2'];
 
 /*
 |--------------------------------------------------------------------------

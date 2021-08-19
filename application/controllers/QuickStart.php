@@ -60,6 +60,7 @@ class QuickStart extends CI_Controller {
 
 	public function generate_check(){
 		$this->load->helper('generate_helper');
+		echo "Manish";
 		echo get_content('Hello World');
 		//    chmod("./application/controllers/somefile.php", 0600);
 		// 			$file_name= "foo.php";

@@ -26,13 +26,59 @@ class Auth extends RestController {
 */
  public function index_get($username="Mai")
     {
-        //requestBody={"$ref": "#/components/requestBodies/Pet"},
-        // echo "Hello Get";
           $this->response( [
                     'status' => true,
                     'data' => $username,
                     'headers' => $this->input->request_headers(),
                     'message' => 'No such user found'
+                ], RestController::HTTP_OK );
+    }
+
+    /**
+ * @OA\Get(
+ *     path="/Auth/v1/{username}",
+ *     tags={"Auth"},
+ *   @OA\Parameter(name="username",
+ *     in="path",
+ *     required=true,
+ *     @OA\Schema(type="string")
+ *   ),
+ *     @OA\Response(response="200", description="Success"),
+ *     @OA\Response(response="401", description="Unauthorized"),
+ *     @OA\Response(response="404", description="Not Found"),
+ *     security={{"api_key": {}}}
+ * )
+*/
+     public function index_v1_get($username="Mai")
+    {
+          $this->response( [
+                    'status' => true,
+                    'data' => $username,
+                    'message' => 'index_v1_get found'
+                ], RestController::HTTP_OK );
+    }
+
+/**
+ * @OA\Get(
+ *     path="/Auth/v2/{username}",
+ *     tags={"Auth"},
+ *   @OA\Parameter(name="username",
+ *     in="path",
+ *     required=true,
+ *     @OA\Schema(type="string")
+ *   ),
+ *     @OA\Response(response="200", description="Success"),
+ *     @OA\Response(response="401", description="Unauthorized"),
+ *     @OA\Response(response="404", description="Not Found"),
+ *     security={{"api_key": {}}}
+ * )
+*/
+     public function index_v2_get($username="Mai")
+    {
+             $this->response( [
+                    'status' => true,
+                    'data' => $username,
+                    'message' => 'index_v2_get found'
                 ], RestController::HTTP_OK );
     }
 

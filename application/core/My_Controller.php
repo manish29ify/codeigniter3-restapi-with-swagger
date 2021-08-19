@@ -1,6 +1,6 @@
 <?php
-use Exception;
-use stdClass;
+// use Exception;
+// use stdClass;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -491,6 +491,11 @@ class RestController extends CI_Controller
      */
     public function _remap($object_called, $arguments = [])
     {
+        //        echo "object_called Parameter\n";
+        // print_r($object_called);
+        // echo "\nArguments Parameter\n";
+        // print_r($arguments);
+        // die;
         // Should we answer if not over SSL?
         if ($this->config->item('force_https') && $this->request->ssl === false) {
             $this->response([
@@ -504,11 +509,15 @@ class RestController extends CI_Controller
 
         $controller_method = $object_called.'_'.$this->request->method;
         // Does this method exist? If not, try executing an index method
+        $version = $object_called;
+        // Does this version exist? If not, try executing an index method with version
+        if(!method_exists($this, $controller_method) && preg_match("/^[a-zA-Z]{1}[0-9.,$;]{1}+$/", $version)){
+            $controller_method = 'index_'.strtolower($version).'_'.$this->request->method;
+        }
         if (!method_exists($this, $controller_method)) {
             $controller_method = 'index_'.$this->request->method;
             array_unshift($arguments, $object_called);
-        }
-
+        } 
         // Do we want to log this method (if allowed by config)?
         $log_method = !(isset($this->methods[$controller_method]['log']) && $this->methods[$controller_method]['log'] === false);
 
@@ -1787,8 +1796,8 @@ class RestController extends CI_Controller
         $http_auth = $this->input->server('HTTP_AUTHENTICATION') ?: $this->input->server('HTTP_AUTHORIZATION');
         $headers =$this->input->request_headers();
         $api_key=$headers['api_key'] ?? "";
-        if($api_key!=$this->config->item('rest_valid_api_key')){
-            $this->response([
+        // if($api_key!=$this->config->item('rest_valid_api_key')){
+      if(!in_array( $api_key, $this->config->item('rest_valid_api_key') )){            $this->response([
             $this->config->item('rest_status_field_name')  => false,
             $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unauthorized'),
         ], self::HTTP_UNAUTHORIZED);
