@@ -491,11 +491,6 @@ class RestController extends CI_Controller
      */
     public function _remap($object_called, $arguments = [])
     {
-        //        echo "object_called Parameter\n";
-        // print_r($object_called);
-        // echo "\nArguments Parameter\n";
-        // print_r($arguments);
-        // die;
         // Should we answer if not over SSL?
         if ($this->config->item('force_https') && $this->request->ssl === false) {
             $this->response([
@@ -503,21 +498,33 @@ class RestController extends CI_Controller
                 $this->config->item('rest_message_field_name') => $this->lang->line('text_rest_unsupported'),
             ], self::HTTP_FORBIDDEN);
         }
-
         // Remove the supported format from the function name e.g. index.json => index
         $object_called = preg_replace('/^(.*)\.(?:'.implode('|', array_keys($this->_supported_formats)).')$/', '$1', $object_called);
 
         $controller_method = $object_called.'_'.$this->request->method;
         // Does this method exist? If not, try executing an index method
-        $version = $object_called;
+        $uri =& load_class('URI', 'core');
+        $version = $uri->segments[1];
+        $is_versioned=false;
         // Does this version exist? If not, try executing an index method with version
-        if(!method_exists($this, $controller_method) && preg_match("/^[a-zA-Z]{1}[0-9.,$;]{1}+$/", $version)){
+        if(!method_exists($this, $controller_method) && preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $version)){
             $controller_method = 'index_'.strtolower($version).'_'.$this->request->method;
+            $is_versioned=true;
         }
-        if (!method_exists($this, $controller_method)) {
+        if (!method_exists($this, $controller_method) && !$is_versioned) {
             $controller_method = 'index_'.$this->request->method;
             array_unshift($arguments, $object_called);
         } 
+
+        if (!method_exists($this, $controller_method) && $is_versioned) {
+                $this->response( [
+                    'status' => false,
+                    'error' => 'No route found for version '.$version
+                ], RestController::HTTP_METHOD_NOT_ALLOWED );
+        } 
+
+  
+
         // Do we want to log this method (if allowed by config)?
         $log_method = !(isset($this->methods[$controller_method]['log']) && $this->methods[$controller_method]['log'] === false);
 

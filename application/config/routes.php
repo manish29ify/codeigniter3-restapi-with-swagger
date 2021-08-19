@@ -49,9 +49,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-// $route['(:any)/Login/([^/]*)/([^/]*)/(.*)'] = '$2/$3/$1/$4';
-// $route['blog/joe'] = 'Login/34';
-// $route['(:any)/(:any)/(:any)'] = "$1/$2/$0";
 $route['default_controller'] = 'QuickStart';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+/*
+| -------------------------------------------------------------------------
+| URI ROUTING WITH VERSION
+| -------------------------------------------------------------------------
+| To use version in API set
+|
+|	$route['versioning'] = TRUE;
+|
+| Default it is  
+|
+|	$route['versioning'] = FALSE;
+|
+| This will make your routing like my_version/my-controller/my_method.
+|
+| Examples:	v1/Auth/login
+*/
+$route['versioning'] = FALSE;
