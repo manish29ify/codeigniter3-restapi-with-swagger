@@ -8,7 +8,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Installation
 
-run command in terminal (first verify git cli installation)
+clone source code in you server using command in terminal (first verify git cli installation) or you can directly download scouce code [From Here](https://github.com//manish29ify/codeigniter3-restapi-with-swagger/archive/refs/heads/main.zip)
 ```
 git clone https://github.com/manish29ify/codeigniter3-restapi-with-swagger.git
 ```
