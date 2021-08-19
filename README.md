@@ -8,14 +8,11 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Installation
 
-```
 run command in terminal (first verify git cli installation)
-git clone https://github.com/manish29ify/codeigniter3-restapi-with-swagger.git
-
-* Start a line with a star
-* Profit!
-
 ```
+git clone https://github.com/manish29ify/codeigniter3-restapi-with-swagger.git
+```
+
 # This is an <h1> tag
 ## This is an <h2> tag
 ###### This is an <h6> tag
