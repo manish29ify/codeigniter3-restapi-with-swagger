@@ -13,7 +13,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 * Start a line with a star
 * Profit!
 
-
+```
 # This is an <h1> tag
 ## This is an <h2> tag
 ###### This is an <h6> tag
