@@ -11,7 +11,7 @@ public function __construct()
     if (file_exists(APPPATH.'config/routes.php'))
 		{
 			include(APPPATH.'config/routes.php');
-            if($route['versioning']=== TRUE && preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $segments[1])){
+            if($route['versioning']=== TRUE && !empty($segments) && isset($segments[1]) && preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $segments[1])){
                 $this->set_class($segments[2]);
                 $this->set_method($segments[3]);
             }

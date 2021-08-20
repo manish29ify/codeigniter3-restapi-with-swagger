@@ -69,4 +69,4 @@ $route['translate_uri_dashes'] = FALSE;
 |
 | Examples:	v1/Auth/login
 */
-$route['versioning'] = FALSE;
+$route['versioning'] = TRUE;
