@@ -1,16 +1,23 @@
 ## CodeIginter Rest Server With Swagger
 
-You can use the [editor on GitHub](https://github.com/manish29ify/codeigniter3-restapi-with-swagger/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+This setup is built on top of [CodeIgniter 3 Framework](https://codeigniter.com/userguide3/index.html) by using [chriskacerguis/codeigniter-restserver](https://github.com/chriskacerguis/codeigniter-restserver) and [zircote/swagger-php ^3.2](https://github.com/zircote/swagger-php).
 
 For more details please visit [Document](https://github.com/manish29ify/codeigniter3-restapi-with-swagger/wiki)
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ### Installation
 
 clone source code in you server using command in terminal (first verify git cli installation) or you can directly download scouce code [From Here](https://github.com//manish29ify/codeigniter3-restapi-with-swagger/archive/refs/heads/main.zip)
+
 ```
 git clone https://github.com/manish29ify/codeigniter3-restapi-with-swagger.git
+```
+
+### Remaining Setup
+```
+1. Change base_url in file application/config/config.php
+2. Change url in file application/controllers/openapi/openapi.server.php
+3. In case you get error like "Class 'RestController1' not found" then add below at the top of your controller file
+include_once("./application/core/MY_Controller.php");
 ```
 
 # This is an <h1> tag
