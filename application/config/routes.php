@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -69,4 +69,4 @@ $route['translate_uri_dashes'] = FALSE;
 |
 | Examples:	v1/Auth/login
 */
-$route['versioning'] = TRUE;
+$route['versioning'] = FALSE;

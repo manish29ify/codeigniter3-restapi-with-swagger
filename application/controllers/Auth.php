@@ -59,6 +59,121 @@ class Auth extends RestController
         ], RestController::HTTP_OK);
     }
 
+
+    /**
+     * @OA\Post(
+     *     path="v1/Auth/{username}",
+     *     tags={"Auth"},
+     *   @OA\Parameter(name="username",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(type="string")
+     *   ),
+     *     @OA\Response(response="200", description="Success"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found"),
+     *     security={{"api_key": {}}},
+     *     @OA\RequestBody(
+     *     required=true,
+     *      @OA\MediaType(
+     *       mediaType="application/json",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="email",
+     *           description="Email address of the new user.",
+     *           type="string",
+     *          ),
+     *        ),
+     *       ),
+     *      ),
+     * )
+     */
+    public function index_v1_post($username = "Mai")
+    {
+        $this->response([
+            'status' => true,
+            'data' => $username,
+            'get' => $this->post('email'),
+            'message' => 'index_v1_get found'
+        ], RestController::HTTP_OK);
+    }
+
+
+    /**
+     * @OA\Put(
+     *     path="/Auth/v1/{username}",
+     *     tags={"Auth"},
+     *   @OA\Parameter(name="username",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(type="string")
+     *   ),
+     *     @OA\Response(response="200", description="Success"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found"),
+     *     security={{"api_key": {}}}
+     * )
+     */
+    public function index_v1_put($username = "Mai")
+    {
+        $this->response([
+            'status' => true,
+            'data' => $username,
+            'message' => 'index_v1_get found'
+        ], RestController::HTTP_OK);
+    }
+
+
+    /**
+     * @OA\Delete(
+     *     path="/Auth/v1/{username}",
+     *     tags={"Auth"},
+     *   @OA\Parameter(name="username",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(type="string")
+     *   ),
+     *     @OA\Response(response="200", description="Success"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found"),
+     *     security={{"api_key": {}}}
+     * )
+     */
+    public function index_v1_delete($username = "Mai")
+    {
+        $this->response([
+            'status' => true,
+            'data' => $username,
+            'message' => 'index_v1_get found'
+        ], RestController::HTTP_OK);
+    }
+
+
+    /**
+     * @OA\Patch(
+     *     path="/Auth/v1/{username}",
+     *     tags={"Auth"},
+     *   @OA\Parameter(name="username",
+     *     in="path",
+     *     required=true,
+     *     @OA\Schema(type="string")
+     *   ),
+     *     @OA\Response(response="200", description="Success"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Not Found"),
+     *     security={{"api_key": {}}}
+     * )
+     */
+    public function index_v1_patch($username = "Mai")
+    {
+        $this->response([
+            'status' => true,
+            'data' => $username,
+            'message' => 'index_v1_get found'
+        ], RestController::HTTP_OK);
+    }
+
+
     /**
      * @OA\Get(
      *     path="/Auth/v2/{username}",
@@ -85,7 +200,7 @@ class Auth extends RestController
 
     /**
      * @OA\Post(
-     *     path="/Auth/{id}/{ver}",
+     *     path="/Auth/{id}/{ver",
      *     tags={"Auth"},
      *     summary="Create list of users with given input array",
      *     operationId="createUsersWithListInput",

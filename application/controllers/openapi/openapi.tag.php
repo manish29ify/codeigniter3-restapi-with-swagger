@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @license Apache 2.0
  */
@@ -11,10 +12,6 @@
  *         description="Find out more",
  *         url="http://swagger.io"
  *     )
- * )
- * @OA\Tag(
- *     name="Users",
- *     description="Access to Petstore orders",
  * )
  * @OA\Tag(
  *     name="user",
