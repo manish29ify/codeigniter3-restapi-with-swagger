@@ -505,29 +505,44 @@ class RestController extends CI_Controller
         }
         // Remove the supported format from the function name e.g. index.json => index
         $object_called = preg_replace('/^(.*)\.(?:' . implode('|', array_keys($this->_supported_formats)) . ')$/', '$1', $object_called);
-
         $controller_method = $object_called . '_' . $this->request->method;
         // Does this method exist? If not, try executing an index method
-        $uri = &load_class('URI', 'core');
-        $version = $uri->segments[1];
-        $is_versioned = false;
-        // Does this version exist? If not, try executing an index method with version
-        if (!method_exists($this, $controller_method) && preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $version)) {
-            $controller_method = 'index_' . strtolower($version) . '_' . $this->request->method;
-            $is_versioned = true;
-        }
-        if (!method_exists($this, $controller_method) && !$is_versioned) {
-            $controller_method = 'index_' . $this->request->method;
-            array_unshift($arguments, $object_called);
-        }
+        // Does this method exist? If not, try executing an index method
+        // if (!method_exists($this, $controller_method)) {
+        //     $controller_method = 'index_' . $this->request->method;
+        //     array_unshift($arguments, $object_called);
+        // }
+        // $uri = &load_class('URI', 'core');
+        // $version = $uri->segments[1];
+        // if (preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $version) == 1 && isset($uri->segments[3])) {
+        //     $controller_method =  $uri->segments[3] . '_' . strtolower($version) . '_' . $this->request->method;
+        //     echo "Manish";
+        // }
+        // echo $controller_method;
+        // $is_versioned = false;
+        // // Does this version exist? If not, try executing an index method with version
+        // if (!method_exists($this, $controller_method) && preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $version)) {
+        //     $controller_method = 'index_' . strtolower($version) . '_' . $this->request->method;
+        //     $is_versioned = true;
+        // }
+        // if (!method_exists($this, $controller_method) && !$is_versioned) {
+        //     $controller_method = 'index_' . $this->request->method;
+        //     array_unshift($arguments, $object_called);
+        // }
 
-        if (!method_exists($this, $controller_method) && $is_versioned) {
+        // if (!method_exists($this, $controller_method) && $is_versioned) {
+        //     $this->response([
+        //         'status' => false,
+        //         'error' => 'No route found for version ' . $version
+        //     ], RestController::HTTP_METHOD_NOT_ALLOWED);
+        // }
+
+        if (!method_exists($this, $controller_method)) {
             $this->response([
                 'status' => false,
-                'error' => 'No route found for version ' . $version
+                'error' => 'No route found'
             ], RestController::HTTP_METHOD_NOT_ALLOWED);
         }
-
 
 
         // Do we want to log this method (if allowed by config)?
