@@ -1,108 +1,153 @@
+
+
+
 <?php
 
 /**
- * @license Apache 2.0
- */
-
-namespace Petstore30;
-
-/**
- * Class User
- *
- * @package Petstore30
- *
- * @author  Donii Sergii <doniysa@gmail.com>
- *
  * @OA\Schema(
  *     title="User model",
  *     description="User model",
  * )
  */
+
 class User
 {
     /**
-     * @OA\Property(
-     *     format="int64",
-     *     description="ID",
-     *     title="ID",
-     * )
-     *
+     * @OA\Property(format="int64",description="User ID",title="User ID")
      * @var integer
      */
-    private $id;
+    public $id; //int
 
     /**
-     * @OA\Property(
-     *     description="Username",
-     *     title="Username",
-     * )
-     *
+     * @OA\Property(property="name",description="Post Title", title="Title")
      * @var string
      */
-    private $username;
+    public $name; //String
 
     /**
-     * @OA\Property(
-     *     description="First name",
-     *     title="First name",
-     * )
-     *
+     * @OA\Property(property="username",description="Post Title", title="Title")
      * @var string
      */
-    private $firstName;
+    public $username; //String
 
     /**
-     * @OA\Property(
-     *     description="Last name",
-     *     title="Last name",
-     * )
-     *
+     * @OA\Property(property="email",description="Post Title", title="Title")
      * @var string
      */
-    private $lastName;
+    public $email; //String
 
     /**
-     * @OA\Property(
-     *     format="email",
-     *     description="Email",
-     *     title="Email",
-     * )
-     *
+     * @OA\Property(property="address", type="object", ref="#/components/schemas/Address")
      * @var string
      */
-    private $email;
+    public $address; //Address
 
     /**
-     * @OA\Property(
-     *     format="int64",
-     *     description="Password",
-     *     title="Password",
-     *     maximum=255
-     * )
-     *
+     * @OA\Property(property="phone",description="Post Title", title="Title")
      * @var string
      */
-    private $password;
+    public $phone; //String
 
     /**
-     * @OA\Property(
-     *     format="msisdn",
-     *     description="Phone",
-     *     title="Phone",
-     * )
-     *
+     * @OA\Property(property="website",description="Post Title", title="Title")
      * @var string
      */
-    private $phone;
+    public $website; //String
 
     /**
-     * @OA\Property(
-     *     format="int32",
-     *     description="User status",
-     *     title="User status",
-     * )
-     *
-     * @var integer
+     * @OA\Property(property="company", type="object", ref="#/components/schemas/Company")
+     * @var object
      */
-    private $userStatus;
+    public $company; //Company
+
+}
+
+/**
+ * @OA\Schema(
+ *     title="Geo model",
+ *     description="Geo model",
+ * )
+ */
+class Geo
+{
+    /**
+     * @OA\Property(property="lat",description="Post Title", title="Title")
+     * @var string
+     */
+    public $lat; //String
+
+    /**
+     * @OA\Property(property="String",description="Post Title", title="Title")
+     * @var string
+     */
+    public $lng; //String
+
+}
+
+/**
+ * @OA\Schema(
+ *     title="Address model",
+ *     description="Address model",
+ * )
+ */
+class Address
+{
+    /**
+     * @OA\Property(property="street",description="Post Title", title="Title")
+     * @var string
+     */
+    public $street; //String
+
+    /**
+     * @OA\Property(property="suite",description="Post Title", title="Title")
+     * @var string
+     */
+    public $suite; //Date
+
+    /**
+     * @OA\Property(property="city",description="Post Title", title="Title")
+     * @var string
+     */
+    public $city; //String
+
+    /**
+     * @OA\Property(property="zipcode",description="Post Title", title="Title")
+     * @var string
+     */
+    public $zipcode; //String
+
+    /**
+     * @OA\Property(property="geo", type="object", ref="#/components/schemas/Geo")
+     * @var object
+     */
+    public $geo; //Geo
+
+}
+
+/**
+ * @OA\Schema(
+ *     title="Company model",
+ *     description="Company model",
+ * )
+ */
+class Company
+{
+    /**
+     * @OA\Property(property="name",description="Post Title", title="Title")
+     * @var string
+     */
+    public $name; //String
+
+    /**
+     * @OA\Property(property="catchPhrase",description="Post Title", title="Title")
+     * @var string
+     */
+    public $catchPhrase; //String
+
+    /**
+     * @OA\Property(property="bs",description="Post Title", title="Title")
+     * @var string
+     */
+    public $bs; //String
+
 }

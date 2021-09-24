@@ -5,6 +5,16 @@
  */
 
 /**
+ * 
+ * @OA\Tag(
+ *     name="Posts",
+ *     description="Operations about Posts",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more about store",
+ *         url="http://swagger.io"
+ *     )
+ * )
+ * 
  * @OA\Tag(
  *     name="Auth",
  *     description="Everything about your Pets",
@@ -13,17 +23,5 @@
  *         url="http://swagger.io"
  *     )
  * )
- * @OA\Tag(
- *     name="user",
- *     description="Operations about user",
- *     @OA\ExternalDocumentation(
- *         description="Find out more about store",
- *         url="http://swagger.io"
- *     )
- * )
  * 
- *  * @OA\Tag(
- *     name="Misc",
- *     description="Access to Petstore orders",
- * )
  */

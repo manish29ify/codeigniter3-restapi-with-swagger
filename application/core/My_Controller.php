@@ -506,36 +506,6 @@ class RestController extends CI_Controller
         // Remove the supported format from the function name e.g. index.json => index
         $object_called = preg_replace('/^(.*)\.(?:' . implode('|', array_keys($this->_supported_formats)) . ')$/', '$1', $object_called);
         $controller_method = $object_called . '_' . $this->request->method;
-        // Does this method exist? If not, try executing an index method
-        // Does this method exist? If not, try executing an index method
-        // if (!method_exists($this, $controller_method)) {
-        //     $controller_method = 'index_' . $this->request->method;
-        //     array_unshift($arguments, $object_called);
-        // }
-        // $uri = &load_class('URI', 'core');
-        // $version = $uri->segments[1];
-        // if (preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $version) == 1 && isset($uri->segments[3])) {
-        //     $controller_method =  $uri->segments[3] . '_' . strtolower($version) . '_' . $this->request->method;
-        //     echo "Manish";
-        // }
-        // echo $controller_method;
-        // $is_versioned = false;
-        // // Does this version exist? If not, try executing an index method with version
-        // if (!method_exists($this, $controller_method) && preg_match("/^[vV]{1}[0-9.,$;]{1,2}+$/", $version)) {
-        //     $controller_method = 'index_' . strtolower($version) . '_' . $this->request->method;
-        //     $is_versioned = true;
-        // }
-        // if (!method_exists($this, $controller_method) && !$is_versioned) {
-        //     $controller_method = 'index_' . $this->request->method;
-        //     array_unshift($arguments, $object_called);
-        // }
-
-        // if (!method_exists($this, $controller_method) && $is_versioned) {
-        //     $this->response([
-        //         'status' => false,
-        //         'error' => 'No route found for version ' . $version
-        //     ], RestController::HTTP_METHOD_NOT_ALLOWED);
-        // }
 
         if (!method_exists($this, $controller_method)) {
             $this->response([
@@ -543,7 +513,6 @@ class RestController extends CI_Controller
                 'error' => 'No route found'
             ], RestController::HTTP_METHOD_NOT_ALLOWED);
         }
-
 
         // Do we want to log this method (if allowed by config)?
         $log_method = !(isset($this->methods[$controller_method]['log']) && $this->methods[$controller_method]['log'] === false);
@@ -1527,6 +1496,37 @@ class RestController extends CI_Controller
         }
 
         return isset($this->_query_args[$key]) ? $this->_xss_clean($this->_query_args[$key], $xss_clean) : null;
+    }
+
+
+    /**
+     * Retrieve a value from the raw body with boundary.
+     *
+     * @param null $key       Key to retrieve from the query parameters
+     *                        If NULL an array of arguments is returned
+     *
+     * @return array|string|null Value from the query parameters; otherwise, NULL
+     */
+    public function body($key = null)
+    {
+        $raw_data = file_get_contents('php://input');
+        $boundary = substr($raw_data, 0, strpos($raw_data, "\r\n"));
+        $extra_content = "Content-Disposition: form-data; name=";
+        $parts = array_slice(explode($extra_content, implode("", explode($boundary, $raw_data))), 1);
+        $result = array_map(function ($v) {
+            return explode('"', trim(preg_replace('/\s+/', '', $v), '"'));
+        }, $parts);
+        $keys = array_map(function ($v) {
+            return trim($v[0], '--');
+        }, $result);
+        $vals = array_map(function ($v) {
+            return trim($v[1], '--');
+        }, $result);
+        $data_array = array_combine($keys, $vals);
+        if ($key === null) {
+            return $data_array;
+        }
+        return $data_array[$key];
     }
 
     /**

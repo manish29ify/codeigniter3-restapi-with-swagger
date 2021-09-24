@@ -69,4 +69,24 @@ $route['translate_uri_dashes'] = FALSE;
 |
 | Examples:	v1/Auth/login
 */
-$route['versioning'] = FALSE;
+$route['versioning'] = TRUE;
+
+/*
+| -------------------------------------------------------------------------
+| Hidden Controller
+| -------------------------------------------------------------------------
+| To remove controller name from url add your method name in this array
+
+|	$route['bypass_methods'] = ['method1','method2'];
+|
+| Set Controller name where your method exist
+|
+|   $route['hidden_controller'] = 'YourController';      
+|
+| This will change your routing version/method ==> version/YourController/method.
+|
+| Examples:	v1/method ==> v1/YourController/method
+*/
+$route['bypass_methods'] = ['users', 'userByID'];
+// $route['bypass_methods'] = [];
+$route['hidden_controller'] = 'SilentController';

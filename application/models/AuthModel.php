@@ -1,6 +1,6 @@
-<?php if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+include "../lib.php";
 
 class AuthModel extends CI_Model
 {
@@ -37,6 +37,13 @@ class AuthModel extends CI_Model
             return 0;
         }
         return 0;
+    }
+
+
+
+    public function myauth()
+    {
+        my_fun();
     }
 }
 /* End of file AuthModel.php */
